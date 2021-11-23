@@ -19,4 +19,8 @@ class Topping {
         self.level = level
     }
     
+    func setLevel(level: String) {
+        self.level = level
+    }
+    
 }

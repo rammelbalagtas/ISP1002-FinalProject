@@ -11,8 +11,8 @@ class PizzaListCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
-    
-//    override func awakeFromNib() {
+    @IBOutlet var pizzaImage: UIImageView!
+    //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code
 //    }

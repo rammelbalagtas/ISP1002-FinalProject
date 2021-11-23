@@ -9,40 +9,27 @@ import UIKit
 
 class CustomizePizzaController: UITableViewController {
     
+    @IBOutlet var pizzaNameLabel: UILabel!
+    @IBOutlet var pizzaSizeLabel: UILabel!
+    @IBOutlet var pizzaCrustLabel: UILabel!
+    
     let toppingListCellIdentifier = "ToppingListCell"
+    var mode: String?
+    var pizza: Pizza?
     var sauceList = [Sauce]()
     var meatList = [Meat]()
     var vegetableList = [Vegetable]()
 
+    @IBAction func addQuantity(_ sender: UIButton) {
+        print("ok")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Dummy Data
-        self.sauceList.append(Sauce(name: "Sauce 1", level: "Normal"))
-        self.sauceList.append(Sauce(name: "Sauce 2", level: "Extra"))
-//        self.sauceList.append(Sauce(name: "Sauce 3", level: "level"))
-//        self.sauceList.append(Sauce(name: "Sauce 4", level: "level"))
-//        self.sauceList.append(Sauce(name: "Sauce 5", level: "level"))
-        
-        self.meatList.append(Meat(name: "Meat 1", level: "Normal"))
-        self.meatList.append(Meat(name: "Meat 2", level: "Extra"))
-//        self.meatList.append(Meat(name: "Meat 3", level: "level"))
-//        self.meatList.append(Meat(name: "Meat 4", level: "level"))
-//        self.meatList.append(Meat(name: "Meat 5", level: "level"))
-        
-        self.vegetableList.append(Vegetable(name: "Veg 1", level: "Normal"))
-        self.vegetableList.append(Vegetable(name: "Veg 2", level: "Extra"))
-//        self.vegetableList.append(Vegetable(name: "Veg 1", level: "level"))
-//        self.vegetableList.append(Vegetable(name: "Veg 1", level: "level"))
-//        self.vegetableList.append(Vegetable(name: "Veg 1", level: "level"))
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if mode == "Create" {
+            setData()
+        }
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -67,9 +54,14 @@ class CustomizePizzaController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: toppingListCellIdentifier, for: indexPath) as? ToppingListCell else {
             fatalError("Unable to dequeue ToppingListCell")
-        }        
+        }
+        
+        cell.delegate = self
+        cell.indexPath = indexPath
+        
         switch indexPath.section {
         case 0:
             let sauce = sauceList[indexPath.row]
@@ -106,55 +98,39 @@ class CustomizePizzaController: UITableViewController {
         return header
     }
     
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let sectionButton = UIButton()
-//        sectionButton.setTitle(String("Sauce"),
-//                               for: .normal)
-//        sectionButton.contentHorizontalAlignment = .leading
-//        sectionButton.backgroundColor = .systemBlue
-//        sectionButton.tag = section
-////        sectionButton.addTarget(self,
-////                                action: #selector(self.hideSection(sender:)),
-////                                for: .touchUpInside)
-//
-//        return sectionButton
-//    }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func setData() {
+        
+        pizzaNameLabel.text = pizza?.name
+        pizzaSizeLabel.text = pizza?.size
+        pizzaCrustLabel.text = pizza?.crust
+        
+        for sauce in PizzaDataConfiguration.sauceTopping {
+            self.sauceList.append(Sauce(name: sauce, level: "None"))
+        }
+        
+        for meat in PizzaDataConfiguration.meatTopping {
+            self.meatList.append(Meat(name: meat, level: "Normal"))
+        }
+        
+        for vegetable in PizzaDataConfiguration.vegetableTopping {
+            self.vegetableList.append(Vegetable(name: vegetable, level: "Normal"))
+        }
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+}
 
+extension CustomizePizzaController: CustomizePizza {
+    func updateToppingLevel(newLevel: String, section: Int, row: Int) {
+        switch section {
+        case 0:
+            sauceList[row].setLevel(level: newLevel)
+        case 1:
+            meatList[row].setLevel(level: newLevel)
+        case 2:
+            vegetableList[row].setLevel(level: newLevel)
+        default:
+            print("No corresponding section")
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

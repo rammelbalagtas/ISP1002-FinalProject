@@ -14,24 +14,21 @@ class PizzaListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        pizzaList.append(Pizza(name: "Pizza 1", description: "Description 1"))
-        pizzaList.append(Pizza(name: "Pizza 2", description: "Description 2"))
-        pizzaList.append(Pizza(name: "Pizza 3", description: "Description 3"))
-        pizzaList.append(Pizza(name: "Pizza 4", description: "Description 4"))
-        pizzaList.append(Pizza(name: "Pizza 5", description: "Description 5"))
-        // Do any additional setup after loading the view.
+        self.clearsSelectionOnViewWillAppear = false
+        for pizza in PizzaDataConfiguration.specialPizza {
+            pizzaList.append(pizza)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "BuildSpecialPizzaSegue" {
+            let destination = segue.destination as! SizeTableViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destination.pizza = nil
+                destination.pizza = Pizza(name: pizzaList[indexPath.row].name)
+            }
+        }
     }
-    */
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -54,6 +51,7 @@ class PizzaListController: UITableViewController {
         let pizza = pizzaList[indexPath.row]
         cell.nameLabel!.text = pizza.name
         cell.descriptionLabel!.text = pizza.description
+        cell.pizzaImage! = UIImageView(image: UIImage(named: (pizza.image)!))
         return cell
     }
 

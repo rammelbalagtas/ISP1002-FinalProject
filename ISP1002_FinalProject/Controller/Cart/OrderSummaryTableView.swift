@@ -1,31 +1,22 @@
 //
-//  CrustTableViewController.swift
+//  OrderSummaryTableView.swift
 //  ISP1002_FinalProject
 //
-//  Created by Rammel on 2021-11-15.
+//  Created by Rammel on 2021-11-21.
 //
 
 import UIKit
 
-class CrustTableViewController: UITableViewController {
-    
-    var pizza: Pizza?
+class OrderSummaryTableView: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-         self.clearsSelectionOnViewWillAppear = false
-    }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SelectPizzaCrust" {
-            let destination = segue.destination as! CustomizePizzaController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                destination.pizza = self.pizza
-                destination.pizza?.setCrust(crust:PizzaDataConfiguration.pizzaCrust[indexPath.row])
-                destination.mode = "Create"
-            }
-        }
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,17 +26,26 @@ class CrustTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return PizzaDataConfiguration.pizzaCrust.count
+        return 5
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CrustCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderHistoryCell", for: indexPath)
 
-        cell.textLabel?.text = PizzaDataConfiguration.pizzaCrust[indexPath.row]
+        cell.textLabel?.text = "Completed Order ID XXX"
         return cell
     }
-    
+
+    /*
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -63,7 +63,7 @@ class CrustTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
