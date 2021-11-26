@@ -25,7 +25,7 @@ class PizzaListController: UITableViewController {
             let destination = segue.destination as! SizeTableViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 destination.pizza = nil
-                destination.pizza = Pizza(name: pizzaList[indexPath.row].name)
+                destination.pizza = Pizza(name: pizzaList[indexPath.row].name, price: pizzaList[indexPath.row].price)
             }
         }
     }

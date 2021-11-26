@@ -35,6 +35,4 @@ class ToppingList {
         self.vegetableList.append(Vegetable(name: "Veg 1", level: "level"))
         
     }
-    
-    
 }

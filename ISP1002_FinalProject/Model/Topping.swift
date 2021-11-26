@@ -7,7 +7,20 @@
 
 import Foundation
 
-class Topping {
+class Topping: NSObject, NSCoding {
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(type, forKey: "type")
+        coder.encode(name, forKey: "name")
+        coder.encode(level, forKey: "level")
+    }
+    
+    required init?(coder: NSCoder) {
+        type = coder.decodeObject(forKey: "type") as! String
+        name = coder.decodeObject(forKey: "name") as! String
+        level = coder.decodeObject(forKey: "level") as! String
+        super.init()
+    }
     
     private(set) var type: String
     private(set) var name: String

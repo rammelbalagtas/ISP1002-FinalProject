@@ -8,7 +8,12 @@
 import Foundation
 
 class Meat : Topping {
+    
     init(name: String, level: String) {
         super.init(type: "Meat", name: name, level: level)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }

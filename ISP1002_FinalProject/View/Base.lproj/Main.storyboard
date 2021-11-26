@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJs-dN-yGY">
-                                <rect key="frame" x="16" y="320.33333333333331" width="137" height="87"/>
+                                <rect key="frame" x="16" y="320.33333333333331" width="137" height="86.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CJs-dN-yGY" secondAttribute="height" multiplier="30:19" id="N9G-6h-nLa"/>
                                 </constraints>
@@ -337,6 +337,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="filled" title="Add To Cart"/>
+                                    <connections>
+                                        <action selector="actionAddToCart:" destination="nJD-L5-rCJ" eventType="touchUpInside" id="7Yx-kV-OH2"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xr-Fy-w6s">
                                     <rect key="frame" x="18" y="15" width="65" height="21"/>
@@ -348,13 +351,16 @@
                                     <rect key="frame" x="91" y="11" width="44.666666666666657" height="29"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="actionLessPizza:" destination="nJD-L5-rCJ" eventType="touchUpInside" id="kcW-lW-GEm"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVj-Aa-c90">
                                     <rect key="frame" x="165" y="10.333333333333334" width="44.666666666666657" height="30.666666666666664"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system"/>
                                     <connections>
-                                        <action selector="addQuantity:" destination="nJD-L5-rCJ" eventType="touchUpInside" id="94K-CV-lcq"/>
+                                        <action selector="actionAddPizza:" destination="nJD-L5-rCJ" eventType="touchUpInside" id="tF1-XW-Gdn"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QVo-u4-352">
@@ -368,9 +374,9 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="iLY-sY-LOY" firstAttribute="top" secondItem="cAd-Td-6md" secondAttribute="top" constant="11" id="1gU-9M-jMV"/>
-                                <constraint firstItem="iLY-sY-LOY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Xr-Fy-w6s" secondAttribute="trailing" symbolic="YES" id="43K-u8-nJk"/>
+                                <constraint firstItem="iLY-sY-LOY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Xr-Fy-w6s" secondAttribute="trailing" constant="8" symbolic="YES" id="43K-u8-nJk"/>
                                 <constraint firstItem="QVo-u4-352" firstAttribute="leading" secondItem="iLY-sY-LOY" secondAttribute="trailing" constant="3.3333333333333144" id="EwL-zr-Ads"/>
-                                <constraint firstItem="C7M-wd-O4e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lVj-Aa-c90" secondAttribute="trailing" symbolic="YES" id="OaG-OF-vOE"/>
+                                <constraint firstItem="C7M-wd-O4e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lVj-Aa-c90" secondAttribute="trailing" constant="8" symbolic="YES" id="OaG-OF-vOE"/>
                                 <constraint firstItem="6Xr-Fy-w6s" firstAttribute="firstBaseline" secondItem="QVo-u4-352" secondAttribute="firstBaseline" id="P2z-IR-QF3"/>
                                 <constraint firstItem="iLY-sY-LOY" firstAttribute="centerY" secondItem="QVo-u4-352" secondAttribute="centerY" id="S8J-Xm-8Hl"/>
                                 <constraint firstItem="lVj-Aa-c90" firstAttribute="baseline" secondItem="C7M-wd-O4e" secondAttribute="baseline" id="aaP-fF-qPY"/>
@@ -446,17 +452,20 @@
                     <connections>
                         <outlet property="pizzaCrustLabel" destination="4G4-um-dgF" id="XVh-9R-KLC"/>
                         <outlet property="pizzaNameLabel" destination="oZl-6V-wvp" id="698-Im-wgO"/>
+                        <outlet property="pizzaQuantity" destination="QVo-u4-352" id="dGm-EX-8QR"/>
                         <outlet property="pizzaSizeLabel" destination="nEW-kX-Al1" id="5zS-1P-gjf"/>
+                        <segue destination="3Nn-IP-Z4o" kind="unwind" identifier="unwindToHome" unwindAction="unwind:" id="3YS-Cm-ehu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Auh-50-wP6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="3Nn-IP-Z4o" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3205.5999999999999" y="-117.48768472906404"/>
         </scene>
         <!--Order History Nagivation-->
         <scene sceneID="2fJ-GP-rB4">
             <objects>
-                <navigationController title="Order History Nagivation" automaticallyAdjustsScrollViewInsets="NO" id="Jsj-iL-t5b" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OrderHistory" title="Order History Nagivation" automaticallyAdjustsScrollViewInsets="NO" id="Jsj-iL-t5b" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Order History" image="clock.arrow.2.circlepath" catalog="system" id="0G0-jZ-3Bc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Cj-LV-MVX">
@@ -511,7 +520,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Active"/>
-                                <segment title="Completed"/>
+                                <segment title="Cancelled"/>
                             </segments>
                         </segmentedControl>
                     </navigationItem>
@@ -523,7 +532,7 @@
         <!--Home Navigation Controller-->
         <scene sceneID="KJl-71-wWI">
             <objects>
-                <navigationController title="Home Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="VGc-dX-UGf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Home" title="Home Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="VGc-dX-UGf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="LcW-HG-etf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A6v-Sd-J0o">

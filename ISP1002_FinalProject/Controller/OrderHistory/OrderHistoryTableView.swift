@@ -8,6 +8,8 @@
 import UIKit
 
 class OrderHistoryTableView: UITableViewController {
+    
+    var orderList: OrderList!
 
     override func viewDidLoad() {
         super.viewDidLoad()

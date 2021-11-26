@@ -7,27 +7,56 @@
 
 import Foundation
 
-class Pizza {
+class Pizza: NSObject, NSCoding {
     
     private(set) var name: String
-    private(set) var description: String?
-    private(set) var price: Double?
+    private(set) var pizzaDescription: String?
     private(set) var image: String?
     private(set) var size: String?
     private(set) var crust: String?
+    private(set) var price: Double
+    private(set) var quantity: Int?
     private(set) var sauceList: [Sauce] = []
     private(set) var meatList: [Meat] = []
     private(set) var vegetableList:[Vegetable] = []
     
+    func encode(with coder: NSCoder) {
+        coder.encode(name, forKey: "name")
+        coder.encode(pizzaDescription, forKey: "pizzaDescription")
+        coder.encode(image, forKey: "image")
+        coder.encode(size, forKey: "size")
+        coder.encode(crust, forKey: "crust")
+        coder.encode(price, forKey: "price")
+        coder.encode(quantity, forKey: "quantity")
+        coder.encode(sauceList, forKey: "sauceList")
+        coder.encode(meatList, forKey: "meatList")
+        coder.encode(vegetableList, forKey: "vegetableList")
+    }
+    
+    required init?(coder: NSCoder) {
+        name = coder.decodeObject(forKey: "name") as! String
+        pizzaDescription = coder.decodeObject(forKey: "pizzaDescription") as? String
+        image = coder.decodeObject(forKey: "image") as? String
+        size = coder.decodeObject(forKey: "size") as? String
+        crust = coder.decodeObject(forKey: "crust") as? String
+        price = coder.decodeObject(forKey: "price") as! Double
+        quantity = coder.decodeObject(forKey: "quantity") as? Int
+        sauceList = coder.decodeObject(forKey: "sauceList") as! [Sauce]
+        meatList = coder.decodeObject(forKey: "sauceList") as! [Meat]
+        vegetableList = coder.decodeObject(forKey: "sauceList") as! [Vegetable]
+        super.init()
+    }
+    
     init(name: String, description: String, price: Double, image: String) {
         self.name = name
-        self.description = description
+        self.pizzaDescription = description
         self.price = price
         self.image = image
     }
     
-    init(name: String){
+    init(name: String, price: Double){
         self.name = name
+        self.price = price
     }
     
     func setSize(size: String) {
@@ -37,4 +66,21 @@ class Pizza {
     func setCrust(crust: String) {
         self.crust = crust
     }
+    
+    func setQuantity(quantity: Int) {
+        self.quantity = quantity
+    }
+    
+    func setSauceList(sauceList: [Sauce]) {
+        self.sauceList = sauceList
+    }
+    
+    func setVegetableList(vegetableList: [Vegetable]) {
+        self.vegetableList = vegetableList
+    }
+    
+    func setMeatList(meatList: [Meat]) {
+        self.meatList = meatList
+    }
+    
 }

@@ -9,30 +9,37 @@ import UIKit
 
 class CustomizePizzaController: UITableViewController {
     
+    // outlets
     @IBOutlet var pizzaNameLabel: UILabel!
     @IBOutlet var pizzaSizeLabel: UILabel!
     @IBOutlet var pizzaCrustLabel: UILabel!
+    @IBOutlet var pizzaQuantity: UILabel!
+    
+    // actions
+    @IBAction func actionAddPizza(_ sender: UIButton) { increaseQuantity() }
+    @IBAction func actionLessPizza(_ sender: UIButton) { decreaseQuantity() }
+    @IBAction func actionAddToCart(_ sender: UIButton) { addToCart() }
     
     let toppingListCellIdentifier = "ToppingListCell"
     var mode: String?
     var pizza: Pizza?
+    var cart = Cart()
+    var order: Order?
     var sauceList = [Sauce]()
     var meatList = [Meat]()
     var vegetableList = [Vegetable]()
 
-    @IBAction func addQuantity(_ sender: UIButton) {
-        print("ok")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if mode == "Create" {
-            setData()
+            setInitialData()
+        } else {
+            // pass data from cart or order
         }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        // topping sections
         return 3
     }
 
@@ -54,14 +61,11 @@ class CustomizePizzaController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: toppingListCellIdentifier, for: indexPath) as? ToppingListCell else {
             fatalError("Unable to dequeue ToppingListCell")
         }
-        
         cell.delegate = self
         cell.indexPath = indexPath
-        
         switch indexPath.section {
         case 0:
             let sauce = sauceList[indexPath.row]
@@ -81,7 +85,7 @@ class CustomizePizzaController: UITableViewController {
         return cell
     }
 
-    // Create a standard header that includes the returned text.
+    // Define header for each topping table
     override func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
         var header = ""
@@ -98,25 +102,112 @@ class CustomizePizzaController: UITableViewController {
         return header
     }
     
-    func setData() {
+    func setInitialData() {
         
         pizzaNameLabel.text = pizza?.name
         pizzaSizeLabel.text = pizza?.size
         pizzaCrustLabel.text = pizza?.crust
+        pizza?.setQuantity(quantity: 1)
+        if let quantity = pizza?.quantity {
+            pizzaQuantity.text = String(quantity)
+        }
         
         for sauce in PizzaDataConfiguration.sauceTopping {
             self.sauceList.append(Sauce(name: sauce, level: "None"))
         }
         
         for meat in PizzaDataConfiguration.meatTopping {
-            self.meatList.append(Meat(name: meat, level: "Normal"))
+            self.meatList.append(Meat(name: meat, level: "None"))
         }
         
         for vegetable in PizzaDataConfiguration.vegetableTopping {
-            self.vegetableList.append(Vegetable(name: vegetable, level: "Normal"))
+            self.vegetableList.append(Vegetable(name: vegetable, level: "None"))
         }
     }
-
+    
+    func increaseQuantity() {
+        if var quantity = pizza?.quantity {
+            if quantity < PizzaDataConfiguration.pizzaMaxQty { //max quantity is 10
+                quantity += 1
+                pizza?.setQuantity(quantity: quantity)
+                pizzaQuantity.text = String(quantity)
+            }
+        }
+    }
+    
+    func decreaseQuantity() {
+        if var quantity = pizza?.quantity {
+            if quantity > PizzaDataConfiguration.pizzaMinQty { //minimum quantity = 1
+                quantity -= 1
+                pizza?.setQuantity(quantity: quantity)
+                pizzaQuantity.text = String(quantity)
+            }
+        }
+    }
+    
+    func addToCart() {
+        if validateData() {
+            pizza?.setSauceList(sauceList: sauceList)
+            pizza?.setMeatList(meatList: meatList)
+            pizza?.setVegetableList(vegetableList: vegetableList)
+            cart.addPizza(pizza: pizza!)
+            cart.saveList()
+            pizza = nil
+//            displayMessage(title: "Success", message: "Order successfully added to cart")
+            unwindSegue()
+        }
+    }
+    
+    func validateData() -> Bool {
+        var hasSauce: Bool = false
+        var hasMeat: Bool = false
+        var hasVegetable: Bool = false
+        
+        for sauce in sauceList {
+            if sauce.level != "None" {
+                hasSauce = true
+                break
+            }
+        }
+        
+        if !hasSauce {
+            displayMessage(title: "Warning", message: "Please add at lease one sauce")
+            return false
+        }
+             
+        for meat in meatList {
+            if meat.level != "None" {
+                hasMeat = true
+                break
+            }
+        }
+        
+        if !hasMeat {
+            for vegetable in vegetableList {
+                if vegetable.level != "None" {
+                    hasVegetable = true
+                    break
+                }
+            }
+            
+            if !hasVegetable {
+                displayMessage(title: "Warning", message: "Please add at lease one meat and/or vegetable")
+                return false
+            }
+        }
+        return true
+    }
+    
+    // for returning to home
+    func unwindSegue () {
+        performSegue(withIdentifier: "unwindToHome", sender: self)
+    }
+    
+    func displayMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension CustomizePizzaController: CustomizePizza {

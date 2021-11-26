@@ -10,13 +10,30 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    let orderList = OrderList()
+    let cart = Cart()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // Dependency injection code to pass data from window to child views
+        let tabBarController =  window?.rootViewController as! UITabBarController
+        let navControllers = tabBarController.viewControllers
+        
+        // Pass dependency to home screen
+        let homeNavController = navControllers![0] as? UINavigationController
+        let homeViewController = homeNavController?.topViewController as! HomeViewController
+        homeViewController.cart = cart
+        
+        // Pass order history data to order history screen
+        let orderHistoryNavController = navControllers![1] as? UINavigationController
+        let orderHistoryTable = orderHistoryNavController?.topViewController as! OrderHistoryTableView
+        orderHistoryTable.orderList = orderList
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -45,6 +62,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        
+        // Persist data when entering in background state
+        orderList.saveList()
+        cart.saveList()
     }
 
 
