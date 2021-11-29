@@ -50,7 +50,7 @@ class PizzaListController: UITableViewController {
         // Configure the cell...
         let pizza = pizzaList[indexPath.row]
         cell.nameLabel!.text = pizza.name
-        cell.descriptionLabel!.text = pizza.description
+        cell.descriptionLabel!.text = pizza.pizzaDescription
         cell.pizzaImage! = UIImageView(image: UIImage(named: (pizza.image)!))
         return cell
     }

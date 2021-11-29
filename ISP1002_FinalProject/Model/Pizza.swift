@@ -15,7 +15,7 @@ class Pizza: NSObject, NSCoding {
     private(set) var size: String?
     private(set) var crust: String?
     private(set) var price: Double
-    private(set) var quantity: Int?
+    private(set) var quantity: Int = 0
     private(set) var sauceList: [Sauce] = []
     private(set) var meatList: [Meat] = []
     private(set) var vegetableList:[Vegetable] = []
@@ -39,11 +39,11 @@ class Pizza: NSObject, NSCoding {
         image = coder.decodeObject(forKey: "image") as? String
         size = coder.decodeObject(forKey: "size") as? String
         crust = coder.decodeObject(forKey: "crust") as? String
-        price = coder.decodeObject(forKey: "price") as! Double
-        quantity = coder.decodeObject(forKey: "quantity") as? Int
+        price = coder.decodeDouble(forKey: "price")
+        quantity = coder.decodeInteger(forKey: "quantity")
         sauceList = coder.decodeObject(forKey: "sauceList") as! [Sauce]
-        meatList = coder.decodeObject(forKey: "sauceList") as! [Meat]
-        vegetableList = coder.decodeObject(forKey: "sauceList") as! [Vegetable]
+        meatList = coder.decodeObject(forKey: "meatList") as! [Meat]
+        vegetableList = coder.decodeObject(forKey: "vegetableList") as! [Vegetable]
         super.init()
     }
     
@@ -75,12 +75,24 @@ class Pizza: NSObject, NSCoding {
         self.sauceList = sauceList
     }
     
+    func appendSauce(sauce: Sauce) {
+        self.sauceList.append(sauce)
+    }
+    
     func setVegetableList(vegetableList: [Vegetable]) {
         self.vegetableList = vegetableList
     }
     
+    func appendVegetable(vegetable: Vegetable) {
+        self.vegetableList.append(vegetable)
+    }
+    
     func setMeatList(meatList: [Meat]) {
         self.meatList = meatList
+    }
+    
+    func appendMeat(meat: Meat) {
+        self.meatList.append(meat)
     }
     
 }

@@ -13,7 +13,7 @@ class OrderList {
     let orderListURL: URL = {
         let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = documentDirectories.first!
-        return documentDirectory.appendingPathComponent("ordertest.archive")
+        return documentDirectory.appendingPathComponent(PizzaDataConfiguration.orderListArchiveFile)
     }()
     
     private(set) var orderList = [Order]()

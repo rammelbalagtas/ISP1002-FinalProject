@@ -13,13 +13,13 @@ class Cart {
     let cartPizzaListURL: URL = {
         let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = documentDirectories.first!
-        return documentDirectory.appendingPathComponent("cartest.archive")
+        return documentDirectory.appendingPathComponent(PizzaDataConfiguration.cartListArchiveFile)
     }()
     
     private(set) var pizzaList = [Pizza]()
-    private(set) var subTotal: Double?
-    private(set) var tax: Double?
-    private(set) var total: Double?
+    private(set) var subTotal: Double
+    private(set) var tax: Double
+    private(set) var total: Double
     private let taxRate: Double = 0.13
     
     init() {
@@ -32,14 +32,13 @@ class Cart {
             print(err.localizedDescription) //will print an error message when running app for the first time
         }
         
+        subTotal = 0.0
+        tax = 0.0
+        total = 0.0
+        
         if !pizzaList.isEmpty {
             computeTotal()
-        } else {
-            subTotal = 0.0
-            tax = 0.0
-            total = 0.0
         }
-        
     }
     
     func addPizza(pizza: Pizza) {
@@ -52,19 +51,28 @@ class Cart {
         if !pizzaList.isEmpty {
             computeTotal()
         } else {
-            subTotal = 0.0
-            tax = 0.0
-            total = 0.0
+            initTotal()
         }
     }
     
     func computeTotal() {
         for pizza in pizzaList {
-//            subTotal += (pizza.price! * (Double(pizza.quantity!)))
-            subTotal = 1
+            subTotal = subTotal + ((Double(pizza.price)) * (Double(pizza.quantity)))
         }
-        tax = subTotal! * taxRate
-        total = subTotal! + tax!
+        tax = subTotal * taxRate
+        total = subTotal + tax
+    }
+    
+    func deleteList() {
+        initTotal()
+        self.pizzaList = []
+        saveList()
+    }
+    
+    func initTotal() {
+        subTotal = 0.0
+        tax = 0.0
+        total = 0.0
     }
     
     // Update list of orders in archive

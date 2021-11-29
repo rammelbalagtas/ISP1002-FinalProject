@@ -18,7 +18,7 @@ class Order: NSObject, NSCoding {
     private let taxRate: Double = 0.13
     
     init(status: String, pizzaList: [Pizza], subTotal: Double, tax: Double, total: Double) {
-        self.orderId = 1
+        self.orderId = Int.random(in: 1..<9999)
         self.status = status
         self.pizzaList = pizzaList
         self.subTotal = subTotal
@@ -36,12 +36,12 @@ class Order: NSObject, NSCoding {
     }
     
     required init?(coder: NSCoder) {
-        orderId = coder.decodeObject(forKey: "orderId") as! Int
+        orderId = coder.decodeInteger(forKey: "orderId")
         status = coder.decodeObject(forKey: "status") as! String
         pizzaList = coder.decodeObject(forKey: "pizzaList") as! [Pizza]
-        subTotal = coder.decodeObject(forKey: "subTotal") as! Double
-        tax = coder.decodeObject(forKey: "tax") as! Double
-        total = coder.decodeObject(forKey: "total") as! Double
+        subTotal = coder.decodeDouble(forKey: "subTotal")
+        tax = coder.decodeDouble(forKey: "tax")
+        total = coder.decodeDouble(forKey: "total")
         super.init()
     }
     
@@ -57,7 +57,7 @@ class Order: NSObject, NSCoding {
     
     func computeTotal() {
         for pizza in pizzaList {
-            subTotal += (pizza.price! * (Double(pizza.quantity!)))
+            subTotal += (pizza.price * (Double(pizza.quantity)))
         }
         tax = subTotal * taxRate
         total = subTotal + tax

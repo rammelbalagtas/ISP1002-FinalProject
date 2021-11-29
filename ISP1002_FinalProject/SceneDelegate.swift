@@ -28,11 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let homeNavController = navControllers![0] as? UINavigationController
         let homeViewController = homeNavController?.topViewController as! HomeViewController
         homeViewController.cart = cart
+        homeViewController.orderList = orderList
         
         // Pass order history data to order history screen
         let orderHistoryNavController = navControllers![1] as? UINavigationController
-        let orderHistoryTable = orderHistoryNavController?.topViewController as! OrderHistoryTableView
-        orderHistoryTable.orderList = orderList
+        let orderHistoryTable = orderHistoryNavController?.topViewController as! OrderHistoryTableViewController
+        orderHistoryTable.orders = orderList
         
     }
 

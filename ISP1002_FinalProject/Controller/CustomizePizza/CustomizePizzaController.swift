@@ -14,6 +14,7 @@ class CustomizePizzaController: UITableViewController {
     @IBOutlet var pizzaSizeLabel: UILabel!
     @IBOutlet var pizzaCrustLabel: UILabel!
     @IBOutlet var pizzaQuantity: UILabel!
+    @IBOutlet var btnAddToCart: UIButton!
     
     // actions
     @IBAction func actionAddPizza(_ sender: UIButton) { increaseQuantity() }
@@ -21,20 +22,22 @@ class CustomizePizzaController: UITableViewController {
     @IBAction func actionAddToCart(_ sender: UIButton) { addToCart() }
     
     let toppingListCellIdentifier = "ToppingListCell"
-    var mode: String?
+    var displayMode: DisplayMode?
     var pizza: Pizza?
-    var cart = Cart()
-    var order: Order?
-    var sauceList = [Sauce]()
-    var meatList = [Meat]()
-    var vegetableList = [Vegetable]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if mode == "Create" {
+        if displayMode == .new {
             setInitialData()
         } else {
-            // pass data from cart or order
+            // pizza data passed from segue (either from cart or active order)
+            pizzaNameLabel.text = pizza?.name
+            pizzaSizeLabel.text = pizza?.size
+            pizzaCrustLabel.text = pizza?.crust
+            if let quantity = pizza?.quantity {
+                pizzaQuantity.text = String(quantity)
+            }
+            btnAddToCart.setTitle("Update Order", for: .normal)
         }
     }
 
@@ -46,18 +49,14 @@ class CustomizePizzaController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return self.sauceList.count
+            return self.pizza!.sauceList.count
         case 1:
-            return self.meatList.count
+            return self.pizza!.meatList.count
         case 2:
-            return self.vegetableList.count
+            return self.pizza!.vegetableList.count
         default:
             return 0
         }
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,15 +67,15 @@ class CustomizePizzaController: UITableViewController {
         cell.indexPath = indexPath
         switch indexPath.section {
         case 0:
-            let sauce = sauceList[indexPath.row]
+            let sauce = self.pizza!.sauceList[indexPath.row]
             cell.nameLabel!.text = sauce.name
             cell.levelLabel!.text = sauce.level
         case 1:
-            let meat = meatList[indexPath.row]
+            let meat = self.pizza!.meatList[indexPath.row]
             cell.nameLabel!.text = meat.name
             cell.levelLabel!.text = meat.level
         case 2:
-            let vegetable = vegetableList[indexPath.row]
+            let vegetable = self.pizza!.vegetableList[indexPath.row]
             cell.nameLabel!.text = vegetable.name
             cell.levelLabel!.text = vegetable.level
         default:
@@ -111,17 +110,16 @@ class CustomizePizzaController: UITableViewController {
         if let quantity = pizza?.quantity {
             pizzaQuantity.text = String(quantity)
         }
-        
         for sauce in PizzaDataConfiguration.sauceTopping {
-            self.sauceList.append(Sauce(name: sauce, level: "None"))
+            self.pizza?.appendSauce(sauce: Sauce(name: sauce, level: "None"))
         }
         
         for meat in PizzaDataConfiguration.meatTopping {
-            self.meatList.append(Meat(name: meat, level: "None"))
+            self.pizza?.appendMeat(meat: Meat(name: meat, level: "None"))
         }
         
         for vegetable in PizzaDataConfiguration.vegetableTopping {
-            self.vegetableList.append(Vegetable(name: vegetable, level: "None"))
+            self.pizza?.appendVegetable(vegetable: Vegetable(name: vegetable, level: "None"))
         }
     }
     
@@ -129,7 +127,7 @@ class CustomizePizzaController: UITableViewController {
         if var quantity = pizza?.quantity {
             if quantity < PizzaDataConfiguration.pizzaMaxQty { //max quantity is 10
                 quantity += 1
-                pizza?.setQuantity(quantity: quantity)
+                self.pizza?.setQuantity(quantity: quantity)
                 pizzaQuantity.text = String(quantity)
             }
         }
@@ -139,7 +137,7 @@ class CustomizePizzaController: UITableViewController {
         if var quantity = pizza?.quantity {
             if quantity > PizzaDataConfiguration.pizzaMinQty { //minimum quantity = 1
                 quantity -= 1
-                pizza?.setQuantity(quantity: quantity)
+                self.pizza?.setQuantity(quantity: quantity)
                 pizzaQuantity.text = String(quantity)
             }
         }
@@ -147,66 +145,70 @@ class CustomizePizzaController: UITableViewController {
     
     func addToCart() {
         if validateData() {
-            pizza?.setSauceList(sauceList: sauceList)
-            pizza?.setMeatList(meatList: meatList)
-            pizza?.setVegetableList(vegetableList: vegetableList)
-            cart.addPizza(pizza: pizza!)
-            cart.saveList()
-            pizza = nil
-//            displayMessage(title: "Success", message: "Order successfully added to cart")
-            unwindSegue()
+            if displayMode == .new {
+                displayMessage(title: "",
+                               message: "You order is added to the cart",
+                               handler: { action in self.performSegue(withIdentifier: "unwindToHome", sender: self) })
+            } else {
+                displayMessage(title: "",
+                               message: "Order updated",
+                               handler: { action in self.performSegue(withIdentifier: "unwindToOrderSummary", sender: self) })
+            }
         }
     }
     
     func validateData() -> Bool {
+        //Toppings are only required for pizza name = "Build Your Own Pizza"
+        if pizza!.name != PizzaDataConfiguration.customPizzaName {
+            return true
+        }
         var hasSauce: Bool = false
         var hasMeat: Bool = false
         var hasVegetable: Bool = false
-        
-        for sauce in sauceList {
+        for sauce in pizza!.sauceList {
             if sauce.level != "None" {
                 hasSauce = true
                 break
             }
         }
-        
         if !hasSauce {
-            displayMessage(title: "Warning", message: "Please add at lease one sauce")
+            displayMessage(title: "Warning", message: "Please add at lease one sauce", handler: nil)
             return false
         }
-             
-        for meat in meatList {
+        for meat in pizza!.meatList {
             if meat.level != "None" {
                 hasMeat = true
                 break
             }
         }
-        
         if !hasMeat {
-            for vegetable in vegetableList {
+            for vegetable in pizza!.vegetableList {
                 if vegetable.level != "None" {
                     hasVegetable = true
                     break
                 }
             }
-            
             if !hasVegetable {
-                displayMessage(title: "Warning", message: "Please add at lease one meat and/or vegetable")
+                displayMessage(title: "Warning", message: "Please add at lease one meat and/or vegetable", handler: nil)
                 return false
             }
         }
         return true
     }
     
-    // for returning to home
-    func unwindSegue () {
-        performSegue(withIdentifier: "unwindToHome", sender: self)
+    func displayMessage(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: handler))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func displayMessage(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindToHome" {
+            let destination = segue.destination as! HomeViewController
+            destination.cart.addPizza(pizza: pizza!)
+            destination.cart.saveList()
+            pizza = nil
+        }
     }
 }
 
@@ -214,14 +216,13 @@ extension CustomizePizzaController: CustomizePizza {
     func updateToppingLevel(newLevel: String, section: Int, row: Int) {
         switch section {
         case 0:
-            sauceList[row].setLevel(level: newLevel)
+            pizza!.sauceList[row].setLevel(level: newLevel)
         case 1:
-            meatList[row].setLevel(level: newLevel)
+            pizza!.meatList[row].setLevel(level: newLevel)
         case 2:
-            vegetableList[row].setLevel(level: newLevel)
+            pizza!.vegetableList[row].setLevel(level: newLevel)
         default:
             print("No corresponding section")
         }
     }
-
 }
