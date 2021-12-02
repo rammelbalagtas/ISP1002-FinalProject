@@ -33,19 +33,15 @@ class OrderSummaryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let cart = cart {
             pizzaOrderId.isHidden = true
-            pizzaOrderSubTotal.text = String(cart.subTotal)
-            pizzaOrderTax.text = String(cart.tax)
-            pizzaOrderTotal.text = String(cart.total)
+            pizzaOrderSubTotal.text = "$" + String(format: "%.2f", cart.subTotal)
+            pizzaOrderTax.text = "$" + String(format: "%.2f", cart.tax)
+            pizzaOrderTotal.text = "$" + String(format: "%.2f", cart.total)
         } else if let order = order {
             pizzaOrderId.text = "Order ID: " + String(order.orderId)
-            pizzaOrderSubTotal.text = String(order.subTotal)
-            pizzaOrderTax.text = String(order.tax)
-            pizzaOrderTotal.text = String(order.total)
+            pizzaOrderSubTotal.text = "$" + String(format: "%.2f", order.subTotal)
+            pizzaOrderTax.text = "$" + String(format: "%.2f", order.tax)
+            pizzaOrderTotal.text = "$" + String(format: "%.2f", order.total)
             btnCheckOutUpdate.setTitle("Update", for: .normal)
-        } else {
-            pizzaOrderSubTotal.text = "0.0"
-            pizzaOrderTax.text = "0.0"
-            pizzaOrderTotal.text = "0.0"
         }
     }
 
@@ -88,7 +84,7 @@ class OrderSummaryTableViewController: UITableViewController {
         cell.pizzaName.text = pizza!.name
         cell.pizzaTopping.text = "Topping \n Test" //temporary text
         let totalPrice = pizza!.price * Double(pizza!.quantity)
-        cell.pizzaTotalPrice.text = String(totalPrice)
+        cell.pizzaTotalPrice.text = "$" + String(format: "%.2f", totalPrice)
         return cell
     }
     

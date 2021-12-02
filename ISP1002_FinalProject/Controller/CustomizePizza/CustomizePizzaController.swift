@@ -38,7 +38,7 @@ class CustomizePizzaController: UITableViewController {
             if let quantity = pizza?.quantity {
                 pizzaQuantity.text = String(quantity)
             }
-            btnAddToCart.setTitle("Update Order", for: .normal)
+            btnAddToCart.setTitle("Save", for: .normal)
         }
     }
 
