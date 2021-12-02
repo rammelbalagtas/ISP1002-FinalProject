@@ -1,6 +1,6 @@
 //
 //  CustomizePizzaController.swift
-//  ISP1002_FinalProject
+//  This is the table view controller for the customizing new and existing pizza item
 //
 //  Created by Rammel on 2021-11-12.
 //
@@ -28,6 +28,7 @@ class CustomizePizzaController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if displayMode == .new {
+            // building a new pizza
             setInitialData()
         } else {
             // pizza data passed from segue (either from cart or active order)
@@ -42,7 +43,7 @@ class CustomizePizzaController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // topping sections
+        // topping sections (Sauce, Meat, Vegetable)
         return 3
     }
 
@@ -63,8 +64,11 @@ class CustomizePizzaController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: toppingListCellIdentifier, for: indexPath) as? ToppingListCell else {
             fatalError("Unable to dequeue ToppingListCell")
         }
+        
         cell.delegate = self
         cell.indexPath = indexPath
+        
+        // set values for each cell
         switch indexPath.section {
         case 0:
             let sauce = self.pizza!.sauceList[indexPath.row]
@@ -101,8 +105,23 @@ class CustomizePizzaController: UITableViewController {
         return header
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindToHome" {
+            let destination = segue.destination as! HomeViewController
+            destination.cart.addPizza(pizza: pizza!)
+            destination.cart.saveList()
+            pizza = nil
+        } else if segue.identifier == "unwindToOrderSummary" {
+            let destination = segue.destination as! OrderSummaryTableViewController
+            if let cart = destination.cart {
+                cart.computeTotal()
+            } else if let order = destination.order {
+                order.computeTotal()
+            }
+        }
+    }
+    
     func setInitialData() {
-        
         pizzaNameLabel.text = pizza?.name
         pizzaSizeLabel.text = pizza?.size
         pizzaCrustLabel.text = pizza?.crust
@@ -125,7 +144,7 @@ class CustomizePizzaController: UITableViewController {
     
     func increaseQuantity() {
         if var quantity = pizza?.quantity {
-            if quantity < PizzaDataConfiguration.pizzaMaxQty { //max quantity is 10
+            if quantity < PizzaDataConfiguration.pizzaMaxQty { //max quantity is 10 (refer to PizzaDataConfiguration class)
                 quantity += 1
                 self.pizza?.setQuantity(quantity: quantity)
                 pizzaQuantity.text = String(quantity)
@@ -135,7 +154,7 @@ class CustomizePizzaController: UITableViewController {
     
     func decreaseQuantity() {
         if var quantity = pizza?.quantity {
-            if quantity > PizzaDataConfiguration.pizzaMinQty { //minimum quantity = 1
+            if quantity > PizzaDataConfiguration.pizzaMinQty { //minimum quantity = 1 (refer to PizzaDataConfiguration class)
                 quantity -= 1
                 self.pizza?.setQuantity(quantity: quantity)
                 pizzaQuantity.text = String(quantity)
@@ -143,6 +162,9 @@ class CustomizePizzaController: UITableViewController {
         }
     }
     
+    // This method handles:
+    // 1. Adding a new order to the cart
+    // 2. Updating a cart or order item
     func addToCart() {
         if validateData() {
             if displayMode == .new {
@@ -151,12 +173,13 @@ class CustomizePizzaController: UITableViewController {
                                handler: { action in self.performSegue(withIdentifier: "unwindToHome", sender: self) })
             } else {
                 displayMessage(title: "",
-                               message: "Order updated",
+                               message: "Your order is updated",
                                handler: { action in self.performSegue(withIdentifier: "unwindToOrderSummary", sender: self) })
             }
         }
     }
     
+    // Perform simple validation prior to adding item to the cart
     func validateData() -> Bool {
         //Toppings are only required for pizza name = "Build Your Own Pizza"
         if pizza!.name != PizzaDataConfiguration.customPizzaName {
@@ -196,22 +219,15 @@ class CustomizePizzaController: UITableViewController {
         return true
     }
     
+    // Reusable method for displaying confirmation messages
     func displayMessage(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: handler))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindToHome" {
-            let destination = segue.destination as! HomeViewController
-            destination.cart.addPizza(pizza: pizza!)
-            destination.cart.saveList()
-            pizza = nil
-        }
-    }
 }
 
+// delegating actions to the main controller for updating the model
 extension CustomizePizzaController: CustomizePizza {
     func updateToppingLevel(newLevel: String, section: Int, row: Int) {
         switch section {

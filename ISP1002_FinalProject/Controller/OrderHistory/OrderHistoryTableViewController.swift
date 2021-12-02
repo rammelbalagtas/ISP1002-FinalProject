@@ -11,18 +11,17 @@ class OrderHistoryTableViewController: UITableViewController {
     
     let orderItemCellIdentifier = "OrderItemCell"
     var orders: OrderList!
+    var orderIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return orders.orderList.count
     }
     
@@ -36,14 +35,44 @@ class OrderHistoryTableViewController: UITableViewController {
         cell.orderTotal.text = String(orders.orderList[indexPath.row].total)
         return cell
     }
+    
+    // Pass the order ID when navigating to Order Summary Screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DisplayOrderItemSegue" {
+            let destination = segue.destination as! OrderSummaryTableViewController
+            destination.order = orders.orderList[orderIndexPath!.row]
+            destination.orderList = orders
+        }
+    }
 
 }
 
+// Delegate methods for View and Cancel buttons
 extension OrderHistoryTableViewController: OrderHistory {
-    func edit(row: Int) {
-        //
+    func edit(indexPath: IndexPath) {
+        orderIndexPath = indexPath
     }
-    func remove(row: Int) {
-        //
+    func remove(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Are you sure you want to cancel the order?",
+                                      message: nil,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .default,
+                                      handler: { _ in self.onConfirmRemove(indexPath: indexPath)}))
+        
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: .cancel,
+                                      handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func onConfirmRemove(indexPath: IndexPath) {
+        orders.removeOrder(index: indexPath.row)
+        orders.saveList()
+        if (!orders.orderList.isEmpty) {
+            tableView.deleteRows(at: [indexPath], with: .none)
+            tableView.reloadData()
+        }
     }
 }

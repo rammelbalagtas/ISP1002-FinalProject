@@ -1,6 +1,7 @@
 //
 //  Topping.swift
-//  ISP1002_FinalProject
+//  This is the class to represent the toppings
+//  Refer to PizzaDataConfiguration for different types of toppings and corresponding levels
 //
 //  Created by Rammel on 2021-11-14.
 //

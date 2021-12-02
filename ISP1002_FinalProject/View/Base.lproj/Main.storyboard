@@ -656,6 +656,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Summary" id="PdT-yI-UKI"/>
                     <connections>
+                        <outlet property="btnCheckOutUpdate" destination="ATD-L5-xKA" id="oMk-BJ-DLF"/>
                         <outlet property="pizzaOrderId" destination="Zy7-E3-cbH" id="2Ax-LQ-575"/>
                         <outlet property="pizzaOrderSubTotal" destination="opG-Im-RN4" id="0nv-D9-PYe"/>
                         <outlet property="pizzaOrderTax" destination="nbO-rw-fwo" id="PiH-V9-wOU"/>

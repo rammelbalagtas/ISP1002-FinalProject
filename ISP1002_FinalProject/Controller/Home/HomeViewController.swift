@@ -33,22 +33,20 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //This is the segue for navigating directly to "Customize Pizza Screen"
         if segue.identifier == "BuildCustomSegue" {
             let destination = segue.destination as! SizeTableViewController
             destination.pizza = Pizza(name: PizzaDataConfiguration.customPizzaName, price: PizzaDataConfiguration.pizzaBasePrice)
-            
+        //This is the segue for navigating directly to "Cart Screen"
         } else if segue.identifier == "ViewCartSegue" {
             let destination = segue.destination as! OrderSummaryTableViewController
             destination.cart = cart
             destination.orderList = orderList
-            
         }
     }
     
-    //unwind from customize pizza screen(after add to cart)/order summary screen(after check out)
+    //this method is used to handle any additional actions whenever unwinding from any screen to the home screen
     @IBAction func unwindToHome( _ seg: UIStoryboardSegue) {
-        //no action required
     }
 }
 

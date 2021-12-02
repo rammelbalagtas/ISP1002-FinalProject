@@ -8,8 +8,8 @@
 import UIKit
 
 protocol OrderHistory {
-    func edit(row: Int)
-    func remove(row: Int)
+    func edit(indexPath: IndexPath)
+    func remove(indexPath: IndexPath)
 }
 
 class OrderItemCell: UITableViewCell {
@@ -21,11 +21,11 @@ class OrderItemCell: UITableViewCell {
     @IBOutlet var orderTotal: UILabel!
     
     @IBAction func editOrder(_ sender: UIButton) {
-        delegate?.edit(row: indexPath.row)
+        delegate?.edit(indexPath: indexPath)
     }
     
     @IBAction func cancelOrder(_ sender: UIButton) {
-        delegate?.remove(row: indexPath.row)
+        delegate?.remove(indexPath: indexPath)
     }
 
 }

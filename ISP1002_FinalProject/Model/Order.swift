@@ -1,6 +1,6 @@
 //
 //  Order.swift
-//  ISP1002_FinalProject
+//  This class contains all the properties and behavior related to a order object
 //
 //  Created by Rammel on 2021-11-21.
 //
@@ -52,14 +52,30 @@ class Order: NSObject, NSCoding {
     
     func removePizza(index: Int) {
         pizzaList.remove(at: index)
-        computeTotal()
+        if !pizzaList.isEmpty {
+            computeTotal()
+        } else {
+            initTotal()
+        }
     }
     
     func computeTotal() {
+        initTotal()
         for pizza in pizzaList {
-            subTotal += (pizza.price * (Double(pizza.quantity)))
+            subTotal = subTotal + ((Double(pizza.price)) * (Double(pizza.quantity)))
         }
         tax = subTotal * taxRate
         total = subTotal + tax
+    }
+    
+    func deleteList() {
+        initTotal()
+        self.pizzaList = []
+    }
+    
+    func initTotal() {
+        subTotal = 0.0
+        tax = 0.0
+        total = 0.0
     }
 }

@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // Dependency injection code to pass data from window to child views
+        
         let tabBarController =  window?.rootViewController as! UITabBarController
         let navControllers = tabBarController.viewControllers
         
@@ -64,11 +65,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
         
-        // Persist data when entering in background state
+        // Persist existing data when entering in background state
         orderList.saveList()
         cart.saveList()
     }
-
 
 }
 

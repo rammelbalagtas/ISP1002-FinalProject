@@ -1,6 +1,6 @@
 //
 //  Sauce.swift
-//  ISP1002_FinalProject
+//  Refer to PizzaDataConfiguration for different types of sauce toppings
 //
 //  Created by Rammel on 2021-11-14.
 //

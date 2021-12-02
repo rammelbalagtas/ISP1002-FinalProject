@@ -13,20 +13,8 @@ class SizeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SelectPizzaSize" {
-            let destination = segue.destination as! CrustTableViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                destination.pizza = self.pizza
-                destination.pizza?.setSize(size: PizzaDataConfiguration.pizzaSize[indexPath.row])
-            }
-        }
-    }
-
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -40,6 +28,16 @@ class SizeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SizeCell", for: indexPath)
         cell.textLabel?.text = PizzaDataConfiguration.pizzaSize[indexPath.row]
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SelectPizzaSize" {
+            let destination = segue.destination as! CrustTableViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destination.pizza = self.pizza
+                destination.pizza?.setSize(size: PizzaDataConfiguration.pizzaSize[indexPath.row])
+            }
+        }
     }
 
 }

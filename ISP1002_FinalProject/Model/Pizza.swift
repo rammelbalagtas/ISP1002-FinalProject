@@ -1,6 +1,6 @@
 //
 //  Pizza.swift
-//  ISP1002_FinalProject
+//  This class contains all the properties and behavior related to a pizza object
 //
 //  Created by Rammel on 2021-11-10.
 //
@@ -15,7 +15,7 @@ class Pizza: NSObject, NSCoding {
     private(set) var size: String?
     private(set) var crust: String?
     private(set) var price: Double
-    private(set) var quantity: Int = 0
+    private(set) var quantity: Int = 1
     private(set) var sauceList: [Sauce] = []
     private(set) var meatList: [Meat] = []
     private(set) var vegetableList:[Vegetable] = []
@@ -47,6 +47,7 @@ class Pizza: NSObject, NSCoding {
         super.init()
     }
     
+    // constructor used when creating list of pizza specials
     init(name: String, description: String, price: Double, image: String) {
         self.name = name
         self.pizzaDescription = description
@@ -54,11 +55,13 @@ class Pizza: NSObject, NSCoding {
         self.image = image
     }
     
+    // another constructor used when building your own pizza
     init(name: String, price: Double){
         self.name = name
         self.price = price
     }
     
+    // List of setter methods
     func setSize(size: String) {
         self.size = size
     }
@@ -83,6 +86,7 @@ class Pizza: NSObject, NSCoding {
         self.vegetableList = vegetableList
     }
     
+    // list of methods to add toppings
     func appendVegetable(vegetable: Vegetable) {
         self.vegetableList.append(vegetable)
     }

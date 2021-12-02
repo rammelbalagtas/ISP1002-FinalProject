@@ -1,6 +1,6 @@
 //
 //  Vegetable.swift
-//  ISP1002_FinalProject
+//  Refer to PizzaDataConfiguration for different types of vegetable toppings
 //
 //  Created by Rammel on 2021-11-14.
 //
