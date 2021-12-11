@@ -82,7 +82,7 @@ class OrderSummaryTableViewController: UITableViewController {
         
         cell.pizzaQuantity.text = "Qty: \(String(pizza!.quantity))"
         cell.pizzaName.text = pizza!.name
-        cell.pizzaTopping.text = "Topping \n Test" //temporary text
+        cell.pizzaTopping.text = PizzaDataConfiguration.buildToppingDescription(pizza: pizza!)
         let totalPrice = pizza!.price * Double(pizza!.quantity)
         cell.pizzaTotalPrice.text = "$" + String(format: "%.2f", totalPrice)
         return cell

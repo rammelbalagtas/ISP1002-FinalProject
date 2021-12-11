@@ -3,4 +3,209 @@
    uuid = "38891856-6E9D-401D-BE21-97ACE2B930B8"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B548B164-1F9B-4FE3-BF8C-5D5142D03B11"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISP1002_FinalProject/Controller/OrderSummary/OrderSummaryTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "checkOut()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "OrderHistoryTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - 3ec4427c0e01fce2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.orders.getter : Swift.Optional&lt;ISP1002_FinalProject.OrderList&gt;"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - a6f82718ddbecde"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.orders.setter : Swift.Optional&lt;ISP1002_FinalProject.OrderList&gt;"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - 5b7519804ba44e9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.orders.modify : Swift.Optional&lt;ISP1002_FinalProject.OrderList&gt;"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - 56d2a2556ea082c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.orders.modify : Swift.Optional&lt;ISP1002_FinalProject.OrderList&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - fa9ce61baf7b2607"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.init(style: __C.UITableViewStyle) -&gt; ISP1002_FinalProject.OrderHistoryTableViewController"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - 2e2dfce00f2e27bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; ISP1002_FinalProject.OrderHistoryTableViewController"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  uuid = "8AF445AA-062C-4108-A31A-1DA6B83D5038 - d7a5e0f0b2014fba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISP1002_FinalProject.OrderHistoryTableViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ISP1002_FinalProject.OrderHistoryTableViewController&gt;"
+                  moduleName = "ISP1002_FinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rbalagtas/Downloads/SwiftAppDemo/ISP1002_FinalProject/ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "150">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CD54D7B-8BA4-4128-8F9A-FF5A246922E7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06A0FE39-6932-4C9E-8FF9-4417EBD710A1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19325499-43CB-488C-8E92-B22CC7C35C24"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FEB274CF-4091-4FB2-AB89-B48991D0E8F1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISP1002_FinalProject/Controller/OrderHistory/OrderHistoryTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

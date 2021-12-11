@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // Dependency injection code to pass data from window to child views
-        
         let tabBarController =  window?.rootViewController as! UITabBarController
         let navControllers = tabBarController.viewControllers
         

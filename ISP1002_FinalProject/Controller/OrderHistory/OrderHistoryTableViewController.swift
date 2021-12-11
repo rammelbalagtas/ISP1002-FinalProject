@@ -12,9 +12,18 @@ class OrderHistoryTableViewController: UITableViewController {
     let orderItemCellIdentifier = "OrderItemCell"
     var orders: OrderList!
     var orderIndexPath: IndexPath?
+    var previousRowCount: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        previousRowCount = orders.orderList.count
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if previousRowCount != orders.orderList.count {
+            previousRowCount = orders.orderList.count
+            tableView.reloadData()
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

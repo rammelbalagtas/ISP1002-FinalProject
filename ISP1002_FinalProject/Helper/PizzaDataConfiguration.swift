@@ -29,4 +29,55 @@ class PizzaDataConfiguration {
     
     static let orderListArchiveFile = "ordertest2.archive"
     static let cartListArchiveFile = "cartest2.archive"
+    
+    static func buildToppingDescription(pizza: Pizza) -> String {
+        
+        var description = "";
+        
+        var sauceText = ""
+        for sauce in pizza.sauceList {
+            if sauce.level != "None" {
+                if sauceText.isEmpty {
+                    sauceText = sauce.name
+                } else {
+                    sauceText = "\(sauceText), \(sauce.name)"
+                }
+            }
+        }
+        description = "Sauce: \(sauceText)"
+        
+        var meatText = ""
+        for meat in pizza.meatList {
+            if meat.level != "None" {
+                if meatText.isEmpty {
+                    meatText = meat.name
+                } else {
+                    meatText = "\(meatText), \(meat.name)"
+                }
+               
+            }
+        }
+        
+        if meatText != "" {
+            description = "\(description)\nMeat: \(meatText)"
+        }
+        
+        var vegetableText = ""
+        for vegetable in pizza.vegetableList {
+            if vegetable.level != "None" {
+                if vegetableText.isEmpty {
+                    vegetableText = vegetable.name
+                } else {
+                    vegetableText = "\(vegetableText), \(vegetable.name)"
+                }
+            }
+        }
+        
+        if vegetableText != "" {
+            description = "\(description)\nVegetable: \(vegetableText)"
+        }
+        
+        return description
+        
+    }
 }
