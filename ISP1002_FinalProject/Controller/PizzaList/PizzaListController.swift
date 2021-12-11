@@ -39,7 +39,8 @@ class PizzaListController: UITableViewController {
         let pizza = pizzaList[indexPath.row]
         cell.nameLabel!.text = pizza.name + " ($\(String(pizza.price)))"
         cell.descriptionLabel!.text = pizza.pizzaDescription
-        cell.pizzaImage! = UIImageView(image: UIImage(named: (pizza.image)!))
+//        cell.pizzaImage! = UIImageView(image: UIImage(named: (pizza.image)!))
+        cell.pizzaImage! = UIImageView(image: UIImage(named: "custompizza"))
         return cell
     }
     

@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "pizza3-1.png",
+      "filename" : "pizza3@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "pizza3-2.png",
+      "filename" : "pizza3@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
