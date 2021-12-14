@@ -16,14 +16,10 @@ class OrderHistoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        previousRowCount = orders.orderList.count
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if previousRowCount != orders.orderList.count {
-            previousRowCount = orders.orderList.count
-            tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,9 +73,9 @@ extension OrderHistoryTableViewController: OrderHistory {
     }
     
     func onConfirmRemove(indexPath: IndexPath) {
-        orders.removeOrder(index: indexPath.row)
-        orders.saveList()
         if (!orders.orderList.isEmpty) {
+            orders.removeOrder(index: indexPath.row)
+            orders.saveList()
             tableView.deleteRows(at: [indexPath], with: .none)
             tableView.reloadData()
         }
