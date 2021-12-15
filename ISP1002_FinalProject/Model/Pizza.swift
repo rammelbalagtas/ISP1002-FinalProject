@@ -48,17 +48,11 @@ class Pizza: NSObject, NSCoding {
     }
     
     // constructor used when creating list of pizza specials
-    init(name: String, description: String, price: Double, image: String) {
+    init(name: String, description: String?, price: Double, image: String?) {
         self.name = name
         self.pizzaDescription = description
         self.price = price
         self.image = image
-    }
-    
-    // another constructor used when building your own pizza
-    init(name: String, price: Double){
-        self.name = name
-        self.price = price
     }
     
     // List of setter methods

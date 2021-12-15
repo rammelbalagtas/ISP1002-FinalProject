@@ -32,7 +32,10 @@ class PizzaDataConfiguration {
     
     static func buildToppingDescription(pizza: Pizza) -> String {
         
-        var description = "";
+        var description = ""
+        if let _ = pizza.pizzaDescription {
+            description = "\(pizza.pizzaDescription!)\nAdditional Toppings:\n"
+        }
         
         var sauceText = ""
         for sauce in pizza.sauceList {
@@ -44,7 +47,10 @@ class PizzaDataConfiguration {
                 }
             }
         }
-        description = "Sauce: \(sauceText)"
+        
+        if sauceText != "" {
+            description = "\(description)\nSauce: \(sauceText)"
+        }
         
         var meatText = ""
         for meat in pizza.meatList {
@@ -77,6 +83,9 @@ class PizzaDataConfiguration {
             description = "\(description)\nVegetable: \(vegetableText)"
         }
         
+        if sauceText == "" && meatText == "" && vegetableText == "" {
+            description = "\(description)None"
+        }
         return description
         
     }

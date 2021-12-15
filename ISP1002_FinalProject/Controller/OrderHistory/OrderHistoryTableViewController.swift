@@ -37,7 +37,7 @@ class OrderHistoryTableViewController: UITableViewController {
         cell.delegate = self
         cell.indexPath = indexPath
         cell.orderId.text = "Order ID: \(String(orders.orderList[indexPath.row].orderId))"
-        cell.orderTotal.text = "$" + String(orders.orderList[indexPath.row].total)
+        cell.orderTotal.text = "$" + String(format: "%.2f", orders.orderList[indexPath.row].total)
         return cell
     }
     

@@ -36,7 +36,10 @@ class HomeViewController: UIViewController {
         //This is the segue for navigating directly to "Customize Pizza Screen"
         if segue.identifier == "BuildCustomSegue" {
             let destination = segue.destination as! SizeTableViewController
-            destination.pizza = Pizza(name: PizzaDataConfiguration.customPizzaName, price: PizzaDataConfiguration.pizzaBasePrice)
+            destination.pizza = Pizza(name: PizzaDataConfiguration.customPizzaName,
+                                      description: nil,
+                                      price: PizzaDataConfiguration.pizzaBasePrice,
+                                      image: nil)
         //This is the segue for navigating directly to "Cart Screen"
         } else if segue.identifier == "ViewCartSegue" {
             let destination = segue.destination as! OrderSummaryTableViewController
