@@ -17,6 +17,7 @@ class OrderSummaryTableViewController: UITableViewController {
     @IBOutlet var btnCheckOutUpdate: UIButton!
     
     let pizzaOrderCellIdentifier = "OrderItemCell"
+    let formatter = NumberFormatter()
     var cart: Cart?
     var order: Order?
     var orderList: OrderList!
@@ -31,16 +32,17 @@ class OrderSummaryTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        formatter.numberStyle = .currency
         if let cart = cart {
             pizzaOrderId.isHidden = true
-            pizzaOrderSubTotal.text = "$" + String(format: "%.2f", cart.subTotal)
-            pizzaOrderTax.text = "$" + String(format: "%.2f", cart.tax)
-            pizzaOrderTotal.text = "$" + String(format: "%.2f", cart.total)
+            pizzaOrderSubTotal.text = formatter.string(from: cart.subTotal as NSNumber)
+            pizzaOrderTax.text = formatter.string(from: cart.tax as NSNumber)
+            pizzaOrderTotal.text = formatter.string(from: cart.total as NSNumber)
         } else if let order = order {
             pizzaOrderId.text = "Order ID: " + String(order.orderId)
-            pizzaOrderSubTotal.text = "$" + String(format: "%.2f", order.subTotal)
-            pizzaOrderTax.text = "$" + String(format: "%.2f", order.tax)
-            pizzaOrderTotal.text = "$" + String(format: "%.2f", order.total)
+            pizzaOrderSubTotal.text = formatter.string(from: order.subTotal as NSNumber)
+            pizzaOrderTax.text = formatter.string(from: order.tax as NSNumber)
+            pizzaOrderTotal.text = formatter.string(from: order.total as NSNumber)
             btnCheckOutUpdate.setTitle("Update", for: .normal)
         }
     }
@@ -84,7 +86,7 @@ class OrderSummaryTableViewController: UITableViewController {
         cell.pizzaName.text = pizza!.name
         cell.pizzaTopping.text = PizzaDataConfiguration.buildToppingDescription(pizza: pizza!)
         let totalPrice = pizza!.price * Double(pizza!.quantity)
-        cell.pizzaTotalPrice.text = "$" + String(format: "%.2f", totalPrice)
+        cell.pizzaTotalPrice.text = formatter.string(from: totalPrice as NSNumber)
         return cell
     }
     

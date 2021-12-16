@@ -27,14 +27,16 @@ class PizzaDataConfiguration {
     static let pizzaMinQty = 1
     static let customPizzaName = "Build Your Own Pizza"
     
-    static let orderListArchiveFile = "ordertest2.archive"
-    static let cartListArchiveFile = "cartest2.archive"
+    static let orderListArchiveFile = "orderlist.archive"
+    static let cartListArchiveFile = "cart.archive"
     
     static func buildToppingDescription(pizza: Pizza) -> String {
         
         var description = ""
         if let _ = pizza.pizzaDescription {
-            description = "\(pizza.pizzaDescription!)\nAdditional Toppings:\n"
+            description = "\(pizza.pizzaDescription!)\n\nAdditional Toppings:"
+        } else {
+            description = "Toppings:"
         }
         
         var sauceText = ""
@@ -84,7 +86,7 @@ class PizzaDataConfiguration {
         }
         
         if sauceText == "" && meatText == "" && vegetableText == "" {
-            description = "\(description)None"
+            description = "\(description) None"
         }
         return description
         

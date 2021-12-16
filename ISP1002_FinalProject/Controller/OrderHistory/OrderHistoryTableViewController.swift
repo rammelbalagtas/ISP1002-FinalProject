@@ -10,6 +10,7 @@ import UIKit
 class OrderHistoryTableViewController: UITableViewController {
     
     let orderItemCellIdentifier = "OrderItemCell"
+    let formatter = NumberFormatter()
     var orders: OrderList!
     var orderIndexPath: IndexPath?
     var previousRowCount: Int!
@@ -19,6 +20,7 @@ class OrderHistoryTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        formatter.numberStyle = .currency
         tableView.reloadData()
     }
 
@@ -37,7 +39,7 @@ class OrderHistoryTableViewController: UITableViewController {
         cell.delegate = self
         cell.indexPath = indexPath
         cell.orderId.text = "Order ID: \(String(orders.orderList[indexPath.row].orderId))"
-        cell.orderTotal.text = "$" + String(format: "%.2f", orders.orderList[indexPath.row].total)
+        cell.orderTotal.text = formatter.string(from: orders.orderList[indexPath.row].total as NSNumber)
         return cell
     }
     

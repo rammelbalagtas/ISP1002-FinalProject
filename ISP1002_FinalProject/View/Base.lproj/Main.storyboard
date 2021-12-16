@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SYt-WK-K3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SYt-WK-K3Y">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -209,7 +209,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YCK-g8-vHI">
                                             <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -250,7 +250,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgn-S4-14i">
                                             <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -357,7 +357,7 @@
                                     <rect key="frame" x="91.5" y="-11" width="105" height="72"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLY-sY-LOY">
-                                            <rect key="frame" x="0.0" y="0.0" width="44.5" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="45.5" height="72"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system"/>
                                             <connections>
@@ -372,7 +372,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVj-Aa-c90">
-                                            <rect key="frame" x="61" y="0.0" width="44" height="72"/>
+                                            <rect key="frame" x="60" y="0.0" width="45" height="72"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system"/>
                                             <connections>
@@ -409,10 +409,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ebe-aQ-DMS">
-                                            <rect key="frame" x="190" y="9" width="174.5" height="32"/>
+                                            <rect key="frame" x="188" y="9" width="176.5" height="32"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0Y-1Q-v4H">
-                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="32"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="32"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system"/>
                                                     <connections>
@@ -420,13 +420,13 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double Extra" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXr-ci-CMo">
-                                                    <rect key="frame" x="51" y="0.0" width="72.5" height="32"/>
+                                                    <rect key="frame" x="52" y="0.0" width="72.5" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJM-6o-5fe">
-                                                    <rect key="frame" x="130.5" y="0.0" width="44" height="32"/>
+                                                    <rect key="frame" x="131.5" y="0.0" width="45" height="32"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="increaseTopping"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system"/>
@@ -562,6 +562,7 @@
                                 <constraint firstAttribute="trailing" secondItem="opG-Im-RN4" secondAttribute="trailing" constant="11.5" id="YMB-gX-2K0"/>
                                 <constraint firstItem="nbO-rw-fwo" firstAttribute="trailing" secondItem="opG-Im-RN4" secondAttribute="trailing" id="ZxZ-3V-9QD"/>
                                 <constraint firstItem="ZqW-6P-tJn" firstAttribute="trailing" secondItem="Gw9-wL-cDO" secondAttribute="trailing" id="aDc-DX-Roh"/>
+                                <constraint firstItem="nbO-rw-fwo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gw9-wL-cDO" secondAttribute="trailing" constant="8" symbolic="YES" id="bif-Xp-cGp"/>
                                 <constraint firstItem="nbO-rw-fwo" firstAttribute="top" secondItem="opG-Im-RN4" secondAttribute="bottom" constant="8" symbolic="YES" id="cXM-Ll-Xnm"/>
                                 <constraint firstItem="Ock-bo-2tg" firstAttribute="trailing" secondItem="ATD-L5-xKA" secondAttribute="trailing" id="dJC-SA-Glg"/>
                                 <constraint firstItem="YyW-Uy-BJd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PGw-Cw-c4A" secondAttribute="leading" constant="20" symbolic="YES" id="kpL-Zw-1Lb"/>
@@ -615,8 +616,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifd-BK-ADI">
-                                            <rect key="frame" x="334.5" y="8.5" width="24.5" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <rect key="frame" x="338" y="11.5" width="21" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
