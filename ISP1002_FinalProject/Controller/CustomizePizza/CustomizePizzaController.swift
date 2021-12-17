@@ -148,6 +148,10 @@ class CustomizePizzaController: UITableViewController {
                 quantity += 1
                 self.pizza?.setQuantity(quantity: quantity)
                 pizzaQuantity.text = String(quantity)
+            } else {
+                displayMessage(title: "",
+                               message: "Only max of 10 pizza is allowed per order item",
+                               handler: nil)
             }
         }
     }
@@ -158,6 +162,10 @@ class CustomizePizzaController: UITableViewController {
                 quantity -= 1
                 self.pizza?.setQuantity(quantity: quantity)
                 pizzaQuantity.text = String(quantity)
+            } else {
+                displayMessage(title: "",
+                               message: "There is a minimum of 1 pizza per order item",
+                               handler: nil)
             }
         }
     }
