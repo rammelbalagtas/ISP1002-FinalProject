@@ -34,7 +34,7 @@ class OrderSummaryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         formatter.numberStyle = .currency
         if let cart = cart {
-            pizzaOrderId.isHidden = true
+            pizzaOrderId.alpha = 0
             pizzaOrderSubTotal.text = formatter.string(from: cart.subTotal as NSNumber)
             pizzaOrderTax.text = formatter.string(from: cart.tax as NSNumber)
             pizzaOrderTotal.text = formatter.string(from: cart.total as NSNumber)
@@ -115,6 +115,7 @@ class OrderSummaryTableViewController: UITableViewController {
     // 2. Update - when updating an existing active order
     func checkOut() {
         var message = ""
+        var unwindIdentifier = ""
         if let cart = cart {
             let newOrder = Order(status: "In Progress",
                                  pizzaList: cart.pizzaList,
@@ -125,9 +126,11 @@ class OrderSummaryTableViewController: UITableViewController {
             orderList.saveList()
             cart.deleteList()
             message = "Order \(String(newOrder.orderId)) is created"
+            unwindIdentifier = "unwindToHome"
         } else if let order = order {
             orderList.saveList()
             message = "Order \(String(order.orderId)) is updated"
+            unwindIdentifier = "unwindToOrderList"
         }
         
         let alert = UIAlertController(title: "",
@@ -135,7 +138,7 @@ class OrderSummaryTableViewController: UITableViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default,
-                                      handler: { _ in self.performSegue(withIdentifier: "unwindToHome", sender: self)}))
+                                      handler: { _ in self.performSegue(withIdentifier: unwindIdentifier, sender: self)}))
         self.present(alert, animated: true, completion: nil)
     }
     

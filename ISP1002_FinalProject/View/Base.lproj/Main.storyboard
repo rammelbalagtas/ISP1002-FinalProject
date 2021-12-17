@@ -344,7 +344,6 @@
                                     <buttonConfiguration key="configuration" style="filled" title="Add To Cart"/>
                                     <connections>
                                         <action selector="actionAddToCart:" destination="nJD-L5-rCJ" eventType="touchUpInside" id="7Yx-kV-OH2"/>
-                                        <segue destination="3Nn-IP-Z4o" kind="unwind" identifier="unwindToOrderSummary" unwindAction="unwindToOrderSummary:" id="hD5-v5-bMz"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xr-Fy-w6s">
@@ -465,7 +464,8 @@
                         <outlet property="pizzaNameLabel" destination="oZl-6V-wvp" id="698-Im-wgO"/>
                         <outlet property="pizzaQuantity" destination="QVo-u4-352" id="dGm-EX-8QR"/>
                         <outlet property="pizzaSizeLabel" destination="nEW-kX-Al1" id="5zS-1P-gjf"/>
-                        <segue destination="3Nn-IP-Z4o" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="3YS-Cm-ehu"/>
+                        <segue destination="3Nn-IP-Z4o" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="3B0-p8-pVK"/>
+                        <segue destination="3Nn-IP-Z4o" kind="unwind" identifier="unwindToOrderSummary" unwindAction="unwindToOrderSummary:" id="tje-Qq-gMy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Auh-50-wP6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -545,7 +545,6 @@
                                     <buttonConfiguration key="configuration" style="filled" title="Checkout"/>
                                     <connections>
                                         <action selector="actionCheckOut:" destination="d5l-P7-3bj" eventType="touchUpInside" id="JlM-bS-N0I"/>
-                                        <segue destination="FAP-8W-0jr" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="Mpx-E3-O3U"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -661,6 +660,8 @@
                         <outlet property="pizzaOrderSubTotal" destination="opG-Im-RN4" id="0nv-D9-PYe"/>
                         <outlet property="pizzaOrderTax" destination="nbO-rw-fwo" id="PiH-V9-wOU"/>
                         <outlet property="pizzaOrderTotal" destination="Ock-bo-2tg" id="ZpL-gD-EJ8"/>
+                        <segue destination="FAP-8W-0jr" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="5yV-ro-k1B"/>
+                        <segue destination="FAP-8W-0jr" kind="unwind" identifier="unwindToOrderList" unwindAction="unwindToOrderList:" id="gCo-S2-LaX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAE-ep-e8d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
